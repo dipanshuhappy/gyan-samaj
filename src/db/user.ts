@@ -1,5 +1,8 @@
 //define collection name
+import { firestore } from 'firebase';
+
 const COLLECTION_NAME = 'users';
+const usersCollection = firestore().collection(COLLECTION_NAME);
 
 export type InsituitionUniversityDetailType = {
   degree: string;
@@ -22,11 +25,42 @@ export type User = {
   subjects: string[];
 };
 
+
 // TODO: implement all here
-export const all = async () => {};
+
+export const all = async () => {
+  try {
+    const snapshot = await usersCollection.get();
+    const users: User[] = [];
+    snapshot.forEach((doc) => {
+      users.push({ id: doc.id, ...doc.data() } as User);
+    });
+    return users;
+  } 
+  catch (error) {
+    console.log('Error getting users:', error);
+  }
+};
+
 
 // TODO: implement create
-export const create = async (newUser: User) => {};
+export const create = async (newUser: User) => {
+  try {
+    const docRef = await usersCollection.add(newUser);
+    return { id: docRef.id };
+  } catch (error) {
+    console.log('Error creating user:', error);
+  }
+};
 
 // TODO: update Todo :
-export const update = async (id: string, newUser: User) => {};
+export const update = async (id: string, newUser: User) => {
+  try {
+    await usersCollection.doc(id).update(newUser);
+    return { id };
+  } catch (error) {
+    console.log('Error updating user:', error);
+  }
+};
+
+
