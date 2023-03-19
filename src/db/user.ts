@@ -38,7 +38,7 @@ export const all_users = async () => {
     return users;
   } 
   catch (error) {
-    console.log('Error getting users:', error);
+    console.log('Problem while retrieving all users:', error);
   }
 };
 
@@ -49,7 +49,7 @@ export const create = async (newUser: User) => {
     const docRef = await usersCollection.add(newUser);
     return { id: docRef.id };
   } catch (error) {
-    console.log('Error creating user:', error);
+    console.log('Problem while creating user:', error);
   }
 };
 
@@ -59,7 +59,7 @@ export const update = async (id: string, newUser: User) => {
     await usersCollection.doc(id).update(newUser);
     return { id };
   } catch (error) {
-    console.log('Error updating user:', error);
+    console.log('Problem while updating user:', error);
   }
 };
 
