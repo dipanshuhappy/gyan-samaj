@@ -28,11 +28,11 @@ export type User = {
 
 // TODO: implement all here
 
-export const all = async () => {
+export const all_users = async () => {
   try {
-    const snapshot = await usersCollection.get();
+    const get_users = await usersCollection.get();
     const users: User[] = [];
-    snapshot.forEach((doc) => {
+    get_users.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() } as User);
     });
     return users;
