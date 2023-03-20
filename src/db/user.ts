@@ -1,9 +1,10 @@
+import { db } from '@/utils/firebase';
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
   getFirestore,
+  setDoc,
   updateDoc,
 } from 'firebase/firestore';
 
@@ -31,10 +32,9 @@ export type User = {
   subjects: string[];
 };
 
-export const create_user = async (newUser: User): Promise<{ id: string }> => {
+export const create_user = async (newUser: User, id: string) => {
   try {
-    const docRef = await addDoc(usersCollection, newUser);
-    return { id: docRef.id };
+    await setDoc(doc(db, COLLECTION_NAME, id), newUser);
   } catch (error) {
     console.log('Problem while creating user:', error);
   }

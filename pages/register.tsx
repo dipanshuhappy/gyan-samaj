@@ -237,6 +237,7 @@ function Register() {
   const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [uid, setUid] = useState('');
   const [formUser, setFormUser] = useState<FormUser>({
     insituition: 'School',
     name: '',
@@ -250,8 +251,9 @@ function Register() {
   const handleLoginWithEmailAndPassword = (e) => {
     e.preventDefault();
     // setShowRegistrationForm(true);
-    createUserWithEmailAndPassword(email, password).then(() => {
+    createUserWithEmailAndPassword(email, password).then((userCred) => {
       console.log({ error });
+      setUid(userCred.user.uid);
       onOpen();
     });
   };
@@ -278,9 +280,11 @@ function Register() {
     } as User;
 
     try {
-      await create_user(user);
-      toast({ title: 'User has been created', status: 'success' });
-      router.push('/login');
+      if (uid != '') {
+        await create_user(user, uid);
+        toast({ title: 'User has been created', status: 'success' });
+        router.push('/login');
+      }
     } catch (error) {
       console.error(error);
     }

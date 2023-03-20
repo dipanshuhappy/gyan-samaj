@@ -1,6 +1,7 @@
+import { app } from '@/utils/firebase';
 import {
   Button,
-  Checkbox,
+  Center,
   FormControl,
   FormLabel,
   Input,
@@ -14,13 +15,33 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
-import React from 'react';
+import { getAuth } from 'firebase/auth';
+import { getStorage, ref } from 'firebase/storage';
+import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useUploadFile } from 'react-firebase-hooks/storage';
 
+const storage = getStorage(app);
 function UploadForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [uploadFile, uploading, snapshot, error] = useUploadFile();
+  const [selectedFile, setSelectedFile] = useState<File>();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+  const [user] = useAuthState(getAuth(app));
+  const upload = async () => {
+    if (selectedFile) {
+      const filestorageRef = `pdfs/${selectedFile.name} ${Date.now()}`;
+      const folderRef = ref(storage, filestorageRef);
+      const result = await uploadFile(folderRef, selectedFile, {
+        contentType: 'pdf',
+      });
+      return { result, filestorageRef };
+    }
+  };
+  const getSummary = async () => {
+    const { result, filestorageRef } = await upload();
+  };
 
   return (
     <>
@@ -32,11 +53,6 @@ function UploadForm() {
           <ModalHeader>Post and Share with your Peers.</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>PostId</FormLabel>
-              <Input type={'text'} placeholder='postid' />
-            </FormControl>
-
             <FormControl mt={4}>
               <FormLabel>Title</FormLabel>
               <Input type={'text'} placeholder='title' />
@@ -44,17 +60,28 @@ function UploadForm() {
 
             <FormControl mt={4}>
               <FormLabel>Files Upload</FormLabel>
-              <Input type='file' placeholder='upload file' />
+              <Input
+                type='file'
+                onChange={(e) => {
+                  const file = e.target.files ? e.target.files[0] : undefined;
+                  setSelectedFile(file);
+                }}
+                placeholder='upload file'
+              />
             </FormControl>
+            <Center marginTop={'8'}>
+              <Button marginInline={'auto'} onClick={getSummary}>
+                Get Summary
+              </Button>
+            </Center>
 
-            <FormControl mt={4}>
-              <FormLabel>Summary</FormLabel>
-              <Textarea placeholder='' size={'md'} />
-            </FormControl>
-
-            <Checkbox paddingTop={'5'} isRequired>
+            <Textarea
+              marginTop={'5'}
+              placeholder='Your summary will come here '
+            ></Textarea>
+            {/* <Checkbox paddingTop={'5'} isRequired>
               I am creating a post on my wish
-            </Checkbox>
+            </Checkbox> */}
           </ModalBody>
 
           <ModalFooter>
