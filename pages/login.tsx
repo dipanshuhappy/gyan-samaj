@@ -1,6 +1,8 @@
 import Layout from '@/components/layout';
 import PageLayout from '@/components/page-layout';
-import {
+import UploadForm from '@/components/postUpload/postUploadForm';
+
+import{
   Flex,
   Box,
   Heading,
@@ -8,12 +10,14 @@ import {
   FormLabel,
   Input,
   Button,
-  Center
+  Center,
+  VStack
 } from '@chakra-ui/react';
 
 function login() {
   return (
     <PageLayout title={''}>
+      <VStack spacing={8}>
     <Flex width="100%" height={"100%"} align="center" marginInline={"auto"}  marginTop="15%" justifyContent="center" >
 
         <Box p={2} bg='#553C9A' w="400px" borderWidth={1} borderRadius={8} boxShadow="lg">
@@ -38,6 +42,9 @@ function login() {
       </Box>
 
     </Flex>
+    <UploadForm/>
+    </VStack>
+    
 
     </PageLayout>
   );
