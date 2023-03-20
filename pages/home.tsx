@@ -4,17 +4,21 @@ import {
   Box,
   Divider,
   Flex,
+  Grid,
+  GridItem,
   HStack,
   Input,
   InputGroup,
   InputLeftElement,
   Text,
+  VStack,
 } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 
 function Home(props) {
   return (
     <PageLayout title={'Home dashboard '}>
+      {/* <UploadForm /> */}
       <Flex
         width='100%'
         flexDirection={'row'}
@@ -52,18 +56,54 @@ function Home(props) {
             </HStack>
           </Box>
         </Box>
-        <Box width={'35%'} margin='8'>
+        <Box width={'50%'} margin='8'>
           <Text textAlign={'left'} marginBottom='8'>
             Top Feed
           </Text>
 
           <Box
-            width={'80%'}
-            borderColor='lightblue'
+            width={'100%'}
             borderRadius={'2xl'}
-            border='4px'
-            minHeight={'300px'}
-          ></Box>
+            border='2px'
+            borderColor='aqua'
+            minHeight={'200px'}
+          >
+            <Grid
+              templateColumns={'repeat(2,1fr)'}
+              templateRows={'repeat(2,1fr)'}
+              gap={2}
+            >
+              <GridItem rowSpan={1} colSpan={1}>
+                <Flex margin={'2'} textAlign='left'>
+                  <Avatar name='D S PS' marginRight={'3'} />
+                  <VStack textAlign={'left'} spacing={0}>
+                    <Text textAlign={'left'}>User 1</Text>
+                    <Text fontSize={'smaller'}>40 min ago</Text>
+                  </VStack>
+                </Flex>
+              </GridItem>
+              <GridItem rowSpan={2} colSpan={1}>
+                <Box
+                  borderRadius={'2xl'}
+                  border={'2px'}
+                  width={'100%'}
+                  height={'100%'}
+                  borderColor='blue.300'
+                  shadow={'xs'}
+                ></Box>
+              </GridItem>
+              <GridItem rowSpan={2} colSpan={1}>
+                <Box
+                  borderRadius={'2xl'}
+                  border={'2px'}
+                  width={'100%'}
+                  height={'100%'}
+                  borderColor='blue.300'
+                  shadow={'xs'}
+                ></Box>
+              </GridItem>
+            </Grid>
+          </Box>
         </Box>
       </Flex>
     </PageLayout>
