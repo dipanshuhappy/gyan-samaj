@@ -1,12 +1,16 @@
-import { firestore } from 'firebase';
+// import { firestore } from 'firebase';
+
+import { collection, doc, setDoc, getDocs, getFirestore } from "firebase/firestore";
+// import { firestore } from "firebase/app";
+
+
 
 const COLLECTION_POST = 'posts';
-const postsCollection = firestore().collection(COLLECTION_POST);
+const postsCollection = collection(getFirestore(), COLLECTION_POST);
 
 
 export type Post = {
     PostId : string,
-    // UserId : string,
     Files : string[],
     title : string,
     summary : string
@@ -16,12 +20,13 @@ export type Post = {
 export const create_post = async (newPost: Post) => {
 
   try {
-    const docRef = await postsCollection.add(newPost);
+    const docRef = doc(postsCollection);
+    await setDoc(docRef, newPost)
     return { id: docRef.id };
   } 
   
   catch (error) {
-    console.log('Error creating post:', error);
+    console.log('Problem while creating post:', error);
   }
 };
 
@@ -29,7 +34,7 @@ export const create_post = async (newPost: Post) => {
 export const all_posts = async () => {
 
     try {
-        const get_posts = await postsCollection.get();
+        const get_posts = await getDocs(postsCollection);
         const posts: Post[] = [];
 
         get_posts.forEach((doc) => {
