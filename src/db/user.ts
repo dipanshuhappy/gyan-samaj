@@ -1,8 +1,7 @@
-//define collection name
-import { firestore } from 'firebase';
+import { getFirestore, collection, doc, setDoc, addDoc, updateDoc, getDocs } from 'firebase/firestore';
 
 const COLLECTION_NAME = 'users';
-const usersCollection = firestore().collection(COLLECTION_NAME);
+const usersCollection = collection(getFirestore(), COLLECTION_NAME);
 
 export type InsituitionUniversityDetailType = {
   degree: string;
@@ -25,14 +24,29 @@ export type User = {
   subjects: string[];
 };
 
+export const create_user = async (newUser: User): Promise<{ id: string }> => {
+  try {
+    const docRef = await addDoc(usersCollection, newUser);
+    return { id: docRef.id };
+  } catch (error) {
+    console.log('Problem while creating user:', error);
+  }
+};
 
-// TODO: implement all here
+export const update_user = async (id: string, newUser: User) => {
+  try {
+    await updateDoc(doc(usersCollection, id), newUser);
+    return { id };
+  } catch (error) {
+    console.log('Problem while updating user:', error);
+  }
+};
 
 export const all_users = async () => {
   try {
-    const get_users = await usersCollection.get();
+    const querySnapshot = await getDocs(usersCollection);
     const users: User[] = [];
-    get_users.forEach((doc) => {
+    querySnapshot.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() } as User);
     });
     return users;
@@ -41,26 +55,3 @@ export const all_users = async () => {
     console.log('Problem while retrieving all users:', error);
   }
 };
-
-
-// TODO: implement create
-export const create = async (newUser: User) => {
-  try {
-    const docRef = await usersCollection.add(newUser);
-    return { id: docRef.id };
-  } catch (error) {
-    console.log('Problem while creating user:', error);
-  }
-};
-
-// TODO: update Todo :
-export const update = async (id: string, newUser: User) => {
-  try {
-    await usersCollection.doc(id).update(newUser);
-    return { id };
-  } catch (error) {
-    console.log('Problem while updating user:', error);
-  }
-};
-
-
