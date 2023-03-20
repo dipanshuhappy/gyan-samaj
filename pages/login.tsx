@@ -1,4 +1,5 @@
 import PageLayout from '@/components/page-layout';
+import { app } from '@/utils/firebase';
 import {
   Box,
   Button,
@@ -8,8 +9,25 @@ import {
   Heading,
   Input,
 } from '@chakra-ui/react';
+import { getAuth } from 'firebase/auth';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 function login() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [signInWithEmailAndPassword, _, loading] =
+    useSignInWithEmailAndPassword(getAuth(app));
+  const router = useRouter();
+  const login = () => {
+    signInWithEmailAndPassword(email, password)
+      .then((userCred) => {
+        console.log({ userCred });
+        router.push('/home');
+      })
+      .catch(console.error);
+  };
   return (
     <PageLayout title={''}>
       <Flex
@@ -43,7 +61,13 @@ function login() {
                 <FormLabel color={'white'}>Password</FormLabel>
                 <Input type='password' placeholder='*******' />
               </FormControl>
-              <Button width='full' mt={8} mb={3} type='submit'>
+              <Button
+                width='full'
+                mt={8}
+                mb={3}
+                isLoading={loading}
+                onClick={login}
+              >
                 Sign In
               </Button>
             </form>
