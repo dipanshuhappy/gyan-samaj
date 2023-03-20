@@ -10,7 +10,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Box as='main'>{children}</Box>
       <Footer />
     </>
