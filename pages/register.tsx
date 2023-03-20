@@ -249,9 +249,9 @@ function Register() {
     useCreateUserWithEmailAndPassword(getAuth(app));
   const handleLoginWithEmailAndPassword = (e) => {
     e.preventDefault();
-    onOpen();
     // setShowRegistrationForm(true);
     createUserWithEmailAndPassword(email, password).then(() => {
+      console.log({ error });
       onOpen();
     });
   };
@@ -313,11 +313,21 @@ function Register() {
             <form onSubmit={handleLoginWithEmailAndPassword}>
               <FormControl color={'white'}>
                 <FormLabel>Email</FormLabel>
-                <Input type='email' placeholder='Enter your email.' />
+                <Input
+                  type='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder='Enter your email.'
+                />
               </FormControl>
               <FormControl mt={6} color={'white'}>
                 <FormLabel>Password</FormLabel>
-                <Input type='password' placeholder='*******' />
+                <Input
+                  type='password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder='*******'
+                />
               </FormControl>
               <Button
                 width='full'
