@@ -23,12 +23,20 @@ import {
   Stack,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { getAuth } from 'firebase/auth';
+import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
+import {
+  create_user,
+  InsituitionSchoolDetailType,
+  InsituitionUniversityDetailType,
+  User,
+} from 'src/db/user';
 const options = [
   {
     label: 'General',
@@ -226,6 +234,7 @@ interface FormUser {
 function Register() {
   // const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formUser, setFormUser] = useState<FormUser>({
@@ -246,7 +255,36 @@ function Register() {
       onOpen();
     });
   };
-  const signUp = () => {};
+  const router = useRouter();
+  const signUp = async () => {
+    let insituitonalDetail = {};
+    if (formUser.insituition == 'School') {
+      insituitonalDetail = {
+        class: formUser.level,
+        stream: formUser.study,
+      } as InsituitionSchoolDetailType;
+    } else {
+      insituitonalDetail = {
+        degree: formUser.study,
+        year: formUser.level,
+      } as InsituitionUniversityDetailType;
+    }
+    const user = {
+      email: email,
+      insituition: formUser.insituition,
+      insituitionDetail: insituitonalDetail,
+      name: formUser.name,
+      subjects: formUser.subjects,
+    } as User;
+
+    try {
+      await create_user(user);
+      toast({ title: 'User has been created', status: 'success' });
+      router.push('/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <PageLayout title={''}>
