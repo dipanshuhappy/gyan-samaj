@@ -1,5 +1,5 @@
 import PageLayout from '@/components/page-layout';
-import { Flex } from '@chakra-ui/react';
+import { Flex, VStack } from '@chakra-ui/react';
 
 function Home(props) {
   return (
