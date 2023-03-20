@@ -1,16 +1,12 @@
 import PageLayout from '@/components/page-layout';
 import {
-  Box,
   Button,
-  Center,
   Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Text,
 } from '@chakra-ui/react';
-import { FcGoogle } from 'react-icons/fc';
 
 function login() {
   return (
@@ -53,18 +49,6 @@ function login() {
           </Box>
         </Box>
       </Flex>
-      <Center p={8}>
-        <Button
-          w={'full'}
-          maxW={'md'}
-          variant={'outline'}
-          leftIcon={<FcGoogle />}
-        >
-          <Center>
-            <Text>Sign Up with Google</Text>
-          </Center>
-        </Button>
-      </Center>
     </PageLayout>
   );
 }
