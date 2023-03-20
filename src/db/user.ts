@@ -1,11 +1,18 @@
-import { getFirestore, collection, doc, setDoc, addDoc, updateDoc, getDocs } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from 'firebase/firestore';
 
 const COLLECTION_NAME = 'users';
 const usersCollection = collection(getFirestore(), COLLECTION_NAME);
 
 export type InsituitionUniversityDetailType = {
   degree: string;
-  year: number;
+  year: string;
 };
 export type InsituitionSchoolDetailType = {
   class: string;
@@ -20,7 +27,7 @@ export type User = {
   insituitionDetail:
     | InsituitionSchoolDetailType
     | InsituitionUniversityDetailType;
-  insituitionalEmail: string;
+  // insituitionalEmail: string;
   subjects: string[];
 };
 
@@ -50,8 +57,7 @@ export const all_users = async () => {
       users.push({ id: doc.id, ...doc.data() } as User);
     });
     return users;
-  } 
-  catch (error) {
+  } catch (error) {
     console.log('Problem while retrieving all users:', error);
   }
 };
