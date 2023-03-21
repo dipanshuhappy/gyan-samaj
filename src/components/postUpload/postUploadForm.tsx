@@ -40,7 +40,7 @@ function UploadForm() {
       const filestorageRef = `pdfs/${selectedFile.name}`;
       const folderRef = ref(storage, filestorageRef);
       const result = await uploadFile(folderRef, selectedFile, {
-        contentType: 'pdf',
+        contentType: 'application/pdf',
       });
       return { result, filestorageRef };
     }
