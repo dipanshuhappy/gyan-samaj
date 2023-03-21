@@ -54,7 +54,13 @@ const NavBar = () => {
     <>
       <Box bg={'#6A0DAD'} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
+          <Avatar
+          size={'sm'}
+          src={"assets/images/logo.png"}
+          borderRadius={'full'}
+          >
+            
+          </Avatar>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>

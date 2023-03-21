@@ -20,76 +20,77 @@ export default function Landing() {
   const router = useRouter();
   return (
     <VStack spacing={'8'}>
-      <Container maxW={'7xl'}>
-        <Stack
-          align={'center'}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 28 }}
-          direction={{ base: 'column', md: 'row' }}
-        >
-          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+    <Container maxW={'7xl'}>
+      <Stack
+        align={'center'}
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 20, md: 28 }}
+        direction={{ base: 'column', md: 'row' }}>
+        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+          <Heading
+            lineHeight={1.1}
+            fontWeight={600}
+            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
             >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  // bg: '#6A0DAD',
-                  zIndex: -1,
-                }}
-              >
-                Write once,
-              </Text>
-              <br />
-              <Text as={'span'} color={'#6A0DAD'}>
-                use everywhere!
-              </Text>
-            </Heading>
-            <Text color={'gray.500'}>
-              Snippy is a rich coding snippets app that lets you create your own
-              code snippets, categorize them, and even sync them in the cloud so
-              you can use them anywhere. All that is free!
+            <Text
+              as={'span'}
+              position={'relative'}
+              _after={{
+                content: "''",
+                width: 'full',
+                height: '30%',
+                position: 'absolute',
+                bottom: 1,
+                left: 0,
+                // bg: '#6A0DAD',
+                zIndex: -1,
+              }}>
+              Revolutionizing the way you learn.
             </Text>
-            <Stack
-              spacing={{ base: 8, sm: 10 }}
-              direction={{ base: 'column', sm: 'row' }}
-            >
-              <Button
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={6}
-                colorScheme={'red'}
-                bg={'#6A0DAD'}
-                onClick={() => {
-                  router.push('/login');
-                }}
-                _hover={{ bg: '#51087E' }}
+            <br />
+            <Text as={'span'} color={'#6A0DAD'}>
+              Learn more by sharing.
+              
+            </Text>
+          </Heading>
+          <Text color={'gray.500'}>
+          “Welcome to our EduTech webapp, where we make learning easier and more efficient. 
+          Our webapp allows you to convert your PDFs into summaries and videos, 
+          making it easier for you to learn on the go. With our webapp, you can simplify your study routine and unlock your learning potential. 
+          You can also post your generated summary and video on our platform, 
+          making it easier for you to share your knowledge with others. 
+          Sign up today and start learning smarter, not harder!”
+          </Text>
+          <Stack
+            spacing={{ base: 8, sm: 10 }}
+            direction={{ base: 'column', sm: 'row' }}>
+            <Button
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={6}
+              colorScheme={'red'}
+              bg={'#6A0DAD'}
+              _hover={{ bg: '#51087E' }}
+              onClick={() => {
+                router.push('./login')
+              }}
               >
-                Login
-              </Button>
-              <Button
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={6}
-                onClick={() => {
-                  router.push('/register');
-                }}
+              Login
+            </Button>
+            <Button
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={6}
+              onClick={() => {
+                router.push('./register')
+              }}
               >
-                SignUp
-              </Button>
-            </Stack>
+              SignUp
+            </Button>
           </Stack>
+        </Stack>
           <Flex
             flex={1}
             justify={'center'}
