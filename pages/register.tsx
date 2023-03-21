@@ -253,7 +253,8 @@ function Register() {
     // setShowRegistrationForm(true);
     createUserWithEmailAndPassword(email, password).then((userCred) => {
       console.log({ error });
-      setUid(userCred.user.uid);
+
+      setUid(getAuth(app).currentUser.uid);
       onOpen();
     });
   };

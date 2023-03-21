@@ -13,9 +13,17 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
+import { all_posts, Post } from 'src/db/post';
 
 function Home(props) {
+  const [posts, setPosts] = useState<Post[]>();
+  useEffect(() => {
+    all_posts().then((value) => {
+      setPosts(value);
+    });
+  }, []);
   return (
     <PageLayout title={'Home dashboard '}>
       {/* <UploadForm /> */}
@@ -60,50 +68,63 @@ function Home(props) {
           <Text textAlign={'left'} marginBottom='8'>
             Top Feed
           </Text>
-
-          <Box
-            width={'100%'}
-            borderRadius={'2xl'}
-            border='2px'
-            borderColor='aqua'
-            minHeight={'200px'}
-          >
-            <Grid
-              templateColumns={'repeat(2,1fr)'}
-              templateRows={'repeat(2,1fr)'}
-              gap={2}
-            >
-              <GridItem rowSpan={1} colSpan={1}>
-                <Flex margin={'2'} textAlign='left'>
-                  <Avatar name='D S PS' marginRight={'3'} />
-                  <VStack textAlign={'left'} spacing={0}>
-                    <Text textAlign={'left'}>User 1</Text>
-                    <Text fontSize={'smaller'}>40 min ago</Text>
-                  </VStack>
-                </Flex>
-              </GridItem>
-              <GridItem rowSpan={2} colSpan={1}>
-                <Box
-                  borderRadius={'2xl'}
-                  border={'2px'}
-                  width={'100%'}
-                  height={'100%'}
-                  borderColor='blue.300'
-                  shadow={'xs'}
-                ></Box>
-              </GridItem>
-              <GridItem rowSpan={2} colSpan={1}>
-                <Box
-                  borderRadius={'2xl'}
-                  border={'2px'}
-                  width={'100%'}
-                  height={'100%'}
-                  borderColor='blue.300'
-                  shadow={'xs'}
-                ></Box>
-              </GridItem>
-            </Grid>
-          </Box>
+          {posts?.map((post) => {
+            return (
+              <Box
+                width={'100%'}
+                borderRadius={'2xl'}
+                border='2px'
+                borderColor='aqua'
+                marginBottom={'16px'}
+                onClick={() => {
+                  window.open(post.Files[0], '_blank');
+                }}
+              >
+                <Grid
+                  marginBottom={'16px'}
+                  templateColumns={'repeat(2,1fr)'}
+                  templateRows={'repeat(2,1fr)'}
+                  gap={8}
+                >
+                  <GridItem rowSpan={1} colSpan={1}>
+                    <Flex margin={'2'} textAlign='left'>
+                      <Avatar name='D S PS' marginRight={'3'} />
+                      <VStack textAlign={'left'} spacing={0}>
+                        <Text textAlign={'left'}>{post.userID}</Text>
+                        <Text fontSize={'smaller'}>Some momeetns ago</Text>
+                      </VStack>
+                    </Flex>
+                  </GridItem>
+                  <GridItem rowSpan={1} colSpan={2}>
+                    <Box
+                      borderRadius={'2xl'}
+                      border={'2px'}
+                      width={'100%'}
+                      height={'100%'}
+                      borderColor='blue.300'
+                      shadow={'xs'}
+                    >
+                      {post.title}
+                    </Box>
+                  </GridItem>
+                  <GridItem rowSpan={2} colSpan={2}>
+                    <Box
+                      borderRadius={'2xl'}
+                      border={'2px'}
+                      width={'100%'}
+                      height={'100%'}
+                      borderColor='blue.300'
+                      shadow={'xs'}
+                      padding='4'
+                    >
+                      {post.summary}
+                    </Box>
+                  </GridItem>
+                </Grid>
+                <Text>Click to Download Full Note</Text>
+              </Box>
+            );
+          })}
         </Box>
       </Flex>
     </PageLayout>
