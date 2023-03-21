@@ -90,7 +90,7 @@ function UploadForm() {
       userID: user.uid,
       id: '',
     }).then(() => {
-      // location.reload();
+      location.reload();
     });
   };
   return (
