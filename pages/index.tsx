@@ -53,17 +53,21 @@ export default function Landing() {
                 // bg: '#6A0DAD',
                 zIndex: -1,
               }}>
-              Write once,
+              Revolutionizing the way you learn.
             </Text>
             <br />
             <Text as={'span'} color={'#6A0DAD'}>
-              use everywhere!
+              Learn more by sharing.
+              
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-            Snippy is a rich coding snippets app that lets you create your own
-            code snippets, categorize them, and even sync them in the cloud so
-            you can use them anywhere. All that is free!
+          “Welcome to our EduTech webapp, where we make learning easier and more efficient. 
+          Our webapp allows you to convert your PDFs into summaries and videos, 
+          making it easier for you to learn on the go. With our webapp, you can simplify your study routine and unlock your learning potential. 
+          You can also post your generated summary and video on our platform, 
+          making it easier for you to share your knowledge with others. 
+          Sign up today and start learning smarter, not harder!”
           </Text>
           <Stack
             spacing={{ base: 8, sm: 10 }}
