@@ -35,34 +35,37 @@ const CardSlide = () => {
 
   const cards = [
     {
-      title: 'Design Projects 1',
+      title: 'Summerize your Notes.',
       text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+        "Our webapp allows you to upload your PDFs and convert them into summaries and videos. Once you upload your PDF, our webapp will automatically generate a summary of the content, making it easier for you to learn on the go. You can also convert your summary into a short video, making it easier for you to share your knowledge with others. You can then post your generated summary and video on our platform, making it easier for you to share your knowledge with others. Our webapp simplifies your study routine and unlocks your learning potential.",
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        '',
     },
     {
-      title: 'Design Projects 2',
+      title: 'Learn with your peers.',
       text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+        "We believe that learning is more effective when you learn with your peers. That’s why we’ve created a platform where you can share your generated summaries and videos with others. You can also see what others are posting, making it easier for you to learn from your peers. With our webapp, you can simplify your study routine and unlock your learning potential. Sign up today and start learning smarter, not harder!",
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        '',
     },
     {
-      title: 'Design Projects 3',
+      title: 'How to Use.',
       text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      <>
+      <Text fontSize='md'> Sign up for our webapp and log in</Text>
+      <Text fontSize='md'> Upload your PDFs to our webapp.</Text>
+      <Text fontSize='md'> Our webapp will automatically generate a summary of the content.</Text>
+      <Text fontSize='md'> You can convert your summary into a short video.</Text>
+      <Text fontSize='md'> You can post your generated summary and video on our platform.</Text>
+      <Text fontSize='md'> You can see what others are posting and learn from your peers.</Text>
+      <Text fontSize='md'> You can ask questions and get answers from other students.</Text>
+      <Text fontSize='md'> You can simplify your study routine and unlock your learning potential.</Text>
+      </>,
       image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    },
-    {
-        title: 'Design Projects 4',
-        text:
-          "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-         image:
-           'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-      },
-  ];
+      '',
+    }
+]
+  
 
   return (
     <Box
