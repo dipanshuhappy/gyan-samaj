@@ -88,10 +88,11 @@ function Home(props) {
                 >
                   <GridItem rowSpan={1} colSpan={1}>
                     <Flex margin={'2'} textAlign='left'>
-                      <Avatar name='D S PS' marginRight={'3'} />
+                      {}
+                      <Avatar name={`${post.userID}`} marginRight={'3'} />
                       <VStack textAlign={'left'} spacing={0}>
                         <Text textAlign={'left'}>{post.userID}</Text>
-                        <Text fontSize={'smaller'}>Some momeetns ago</Text>
+                        <Text fontSize={'smaller'}>Some moments ago</Text>
                       </VStack>
                     </Flex>
                   </GridItem>

@@ -2,6 +2,7 @@ import { db } from '@/utils/firebase';
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   getFirestore,
   setDoc,
@@ -48,7 +49,12 @@ export const update_user = async (id: string, newUser: User) => {
     console.log('Problem while updating user:', error);
   }
 };
-
+export const getUser = async (id: string) => {
+  try {
+    const res = await getDoc(doc(usersCollection, id));
+    return res.data as unknown as User;
+  } catch (error) {}
+};
 export const all_users = async () => {
   try {
     const querySnapshot = await getDocs(usersCollection);

@@ -6,7 +6,6 @@ import { app } from '@/utils/firebase';
 import {
   Box,
   Button,
-  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -21,7 +20,6 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Text,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
@@ -30,7 +28,6 @@ import { getAuth } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { FcGoogle } from 'react-icons/fc';
 import {
   create_user,
   InsituitionSchoolDetailType,
@@ -383,7 +380,7 @@ function Register() {
           </Box>
         </Box>
       </Flex>
-      <Center p={8}>
+      {/* <Center p={8}>
         <Button
           w={'full'}
           maxW={'md'}
@@ -394,7 +391,7 @@ function Register() {
             <Text>Sign Up with Google</Text>
           </Center>
         </Button>
-      </Center>
+      </Center> */}
     </PageLayout>
   );
 }
