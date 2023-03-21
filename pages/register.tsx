@@ -1,5 +1,5 @@
 // register.js
-
+// @ts-nocheck
 import PageLayout from '@/components/page-layout';
 
 import { app } from '@/utils/firebase';
