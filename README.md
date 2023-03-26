@@ -30,7 +30,7 @@
 
 <br />
 
-### See a DEMO [here](https://ts-next-chakra-motion-kit.vercel.app/).
+### See a DEMO [here](https://gyan-samaj-nhc5.vercel.app/).
 
 <h2 align='center'>Getting started</h2>
 
